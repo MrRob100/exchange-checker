@@ -28,46 +28,39 @@ class BilaxyService
     public function check() 
     {
 
-
-      $in = ['a', 'b'];
-
-      $ne = ['a', 'b', 'c'];
-
-      $de = array_diff($in, $ne);
-
-      // dd($de);
-
-
-
       $coins = $this->getCoins();
 
-      $previous = json_decode(file_get_contents('public/data/BilaxyListings.json'));
+      $before = json_decode(file_get_contents('public/data/BilaxyListings.json'));
 
       file_put_contents('public/data/BilaxyListings.json', json_encode($coins));
 
       $after = json_decode(file_get_contents('public/data/BilaxyListings.json'));
 
-      dump('before \/');
+      if ($before === $after) {
+        dump("SAME, TAKE NO ACTION");
 
-      dump($previous);
-
-      dump('after \/');
-
-      
-      dump($after);
-
-      if ($previous === $after) {
-        dump("SAME!");
       } else {
         dump("NOT SAME GET ARRAY_DIFF");
-        $diff = array_diff($after, $previous);
+        $diff = array_diff($after, $before);
         // $diff = array_diff($previous, $after);
+
         dump($diff);
+        //create file that details the price
+
+        $this->logData($diff);
+
       }
 
-      dump('b checked');
+    }
 
+    //takes array
+    public function logData($diff) {
+      dump('touch file');
 
+      //handle diff might be []
+      foreach ($diff as $new_coin) {
+        touch($new_coin."-bilaxy.json");
+      }
     }
 
 }

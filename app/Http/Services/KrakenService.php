@@ -23,6 +23,8 @@ class KrakenService
 
       $coins = array_keys($coinsRaw['result']);
 
+      
+
       return $coins;
     }
 
