@@ -53,6 +53,7 @@ class BilaxyService
 
       dump('after \/');
 
+      
       dump($after);
 
       if ($previous === $after) {
