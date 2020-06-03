@@ -1,0 +1,23 @@
+{
+    "1": {
+        "exchange": "Exchange A",
+        "symbol": "ABC",
+        "timestamp": "4789796526",
+        "alsoOn": ["exchange X"]
+    },
+    "2": {
+      "exchange": "Exchange B",
+      "symbol": "DEF",
+      "timestamp": "6789796526",
+      "alsoOn": [
+        "exchange X",
+        "exchange Y"
+      ]
+    },
+    "3": {
+      "exchange": "Exchange C",
+      "symbol": "FFF",
+      "timestamp": "7789796526",
+      "alsoOn": []
+    }
+}
