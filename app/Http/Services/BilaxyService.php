@@ -35,6 +35,25 @@ class BilaxyService
 
       $check->check($this->exchange, $this->getCoins());
 
+      //check/log price
+      //scandir
+      //find current exchang files
+      //check timestamps and log accordingly
+
+      $dir = 'public/data/price/';
+      $files = scandir($dir);
+      foreach($files as $file) {
+
+        if (strpos($file, $this->exchange) !== false) {
+          $data = json_decode(file_get_contents($dir.$file));
+          if ($data['added'] < time() - 300) {
+            //append price to 
+          }
+        }
+      
+        dump($file);
+      }
+
     }
 
 }

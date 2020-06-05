@@ -25,30 +25,47 @@ class CheckService
 
       if ($before === $after) {
 
-        dump($exchange." SAME, TAKE NO ACTION");
-
       } else {
-        dump($exchange." NOT SAME GET ARRAY_DIFF");
         $diff = array_diff($after, $before);
         // $diff = array_diff($previous, $after);
 
-        dump("buy \/");
-        // dump($diff);
-        //create file that details the price
-
         $this->logNew($exchange, $diff);
 
+        return true;
+
       }
+
+      return false;
+
     }
 
     public function logNew($exchange, $diff)
     {
 
-      $path = 'public/data/';
+      $path = 'public/data/price/';
 
       //handle diff might be []
       foreach ($diff as $new_coin) {
-        // touch($path.$new_coin."-".$exchange.".json");
+
+
+        $file_name = $path.$new_coin."-".$exchange.".json";
+
+        touch($file_name);
+
+        //put stamp 
+        $data = [
+          "added" => time(),
+          "price_data" => [
+            0 => "",
+            1 => "",
+            2 => "",
+            3 => "",
+            4 => "",
+          ]
+        ];
+
+        file_put_contents($file_name, json_encode($data));
+
       }
     }
 
