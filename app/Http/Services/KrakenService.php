@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\App;
  */
 class KrakenService
 {
+    public $exchange = "Kraken";
+
     /**
      * @param array $a
      *
@@ -20,17 +22,17 @@ class KrakenService
     public function getCoins()
     {
       $coinsRaw = json_decode(file_get_contents('https://api.kraken.com/0/public/Assets'), true);
-
       $coins = array_keys($coinsRaw['result']);
-
-      
-
       return $coins;
     }
 
     public function check() 
     {
-      dump('k checked');
+
+      $check = App::make('App\Services\CheckService');
+
+      $check->check($this->exchange, $this->getCoins());
+
     }
 
 }

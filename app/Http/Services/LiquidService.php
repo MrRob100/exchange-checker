@@ -5,13 +5,16 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\App;
+use App\Services\CheckService;
 
 /**
- * Class KrakenService
+ * Class LiquidService
  * @package App\Services
  */
 class LiquidService
 {
+    public $exchange = "Liquid"; 
+
     /**
      * @param array $a
      *
@@ -31,7 +34,11 @@ class LiquidService
 
     public function check() 
     {
-      dump('l checked');
+
+      $check = App::make('App\Services\CheckService');
+
+      $check->check($this->exchange, $this->getCoins());
+
     }
 
 }
