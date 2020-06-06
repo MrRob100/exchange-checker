@@ -41,8 +41,9 @@ class check extends Command
      */
     public function handle()
     {
+        //takes a while
         $kraken = App::make('App\Services\KrakenService');
-        $kraken->check();
+        // $kraken->check();
 
         $liquid = App::make('App\Services\LiquidService');
         $liquid->check();
