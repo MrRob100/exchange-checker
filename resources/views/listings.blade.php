@@ -11,7 +11,8 @@
 
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div id="app">
+            <example-component></example-component>
             <div class="content">
                 <div class="title m-b-md">
                     LISTINGS
@@ -27,6 +28,8 @@
             </div>
         </div>
     </body>
+    <script src="js/app.js"></script>
+
     <!-- Styles -->
     <style>
         html, body {

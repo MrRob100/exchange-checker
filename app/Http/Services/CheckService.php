@@ -75,7 +75,7 @@ class CheckService
 
       $alsoOn = [];
 
-      $data[$exchange."-".$coin] = [
+      $data[$coin."-".$exchange] = [
         "exchange" => $exchange,
         "symbol" => $coin,
         "timestamp" => time(),
