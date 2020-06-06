@@ -56,4 +56,10 @@ class BilaxyService
 
     }
 
+    public function getPrice($coin) {
+
+      
+      return $price;
+    }
+
 }
