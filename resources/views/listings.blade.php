@@ -12,19 +12,18 @@
     </head>
     <body>
         <div id="app">
-            <example-component></example-component>
             <div class="content">
-                <div class="title m-b-md">
-                    LISTINGS
-                </div>
+                <h4>Listings</h4>
 
                 @foreach ($events as $event)
-                    <p>{{ $event['symbol'] }} was added to {{ $event['exchange'] }} at {{ $event['timestamp'] }}. Also available on
-                    @foreach ($event['alsoOn'] as $alsoOn)
-                    <p>{{ $alsoOn }}</p>
-                    @endforeach
-                    </p>
+                    <listing
+                    symbol="{{ $event['symbol'] }}"
+                    exchange="{{ $event['exchange'] }}"
+                    timestamp="{{ $event['timestamp'] }}"
+                    also="{{ implode(' ',$event['alsoOn']) }}"
+                    ></listing>
                 @endforeach
+
             </div>
         </div>
     </body>
@@ -81,6 +80,14 @@
 
         .m-b-md {
             margin-bottom: 30px;
+        }
+
+        .ctr {
+            border-width: 1px;
+            border-color: #777;
+            border-style: solid;
+            margin: 5px;
+            border-radius: 5px;
         }
     </style>
 </html>
