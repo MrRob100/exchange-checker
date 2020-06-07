@@ -32,12 +32,38 @@ class LiquidService
       return $coins;
     }
 
+    //put in common service
     public function check() 
     {
 
       $check = App::make('App\Services\CheckService');
+      $hitbtc = App::make('App\Services\HitBtcService');
 
       $check->check($this->exchange, $this->getCoins());
+
+      $dir = 'public/data/price/';
+      $files = scandir($dir);
+      foreach($files as $file) {
+
+        if (strpos($file, $this->exchange) !== false) {
+          $data = json_decode(file_get_contents($dir.$file), true);
+
+          $timeafter = time() - $data['added'];
+
+          if ($timeafter < 300) {
+            //get price
+            $price = $hitbtc->price($data['coin']);
+
+            //add it to file
+            $data['price_data'][$timeafter] = $price;
+
+            file_put_contents($dir.$file, json_encode($data));
+          } else {
+            //
+          }
+        }
+      
+      }
 
     }
 

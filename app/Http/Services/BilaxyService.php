@@ -28,6 +28,7 @@ class BilaxyService
       return $coins;
     }
 
+    //put in common service
     public function check() 
     {
       $check = App::make('App\Services\CheckService');
@@ -45,19 +46,15 @@ class BilaxyService
           $timeafter = time() - $data['added'];
 
           if ($timeafter < 300) {
-            dump('within timeframe '.$data['coin'].' '.$this->exchange);
             //get price
             $price = $hitbtc->price($data['coin']);
 
             //add it to file
             $data['price_data'][$timeafter] = $price;
 
-            dump('about to put \/');
-            dump($data);
-
             file_put_contents($dir.$file, json_encode($data));
           } else {
-            dump('too late '.$data['coin'].' '.$this->exchange);
+            //
           }
         }
       
