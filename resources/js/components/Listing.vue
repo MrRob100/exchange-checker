@@ -21,7 +21,7 @@
 
       <div class="avail"></div>
 
-      <p>also on: {{ also }}</p>
+      <div>also on: {{ also }}</div>
 
       <div
       v-if="showPrice" 
