@@ -12,6 +12,8 @@
     </head>
     <body>
         <div id="app">
+            <button class="toggle-all-prices">Price Action</button>
+
             <div class="content">
                 <h4>Listings</h4>
 
@@ -38,6 +40,10 @@
             font-weight: 200;
             height: 100vh;
             margin: 0;
+        }
+
+        .toggle-button, .toggle-all-prices {
+            float: right;
         }
 
         .full-height {

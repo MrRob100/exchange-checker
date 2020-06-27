@@ -1957,28 +1957,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['symbol', 'exchange', 'timestamp', 'also'],
   data: function data() {
     return {
       date: "",
-      priceAction: {}
+      priceAction: {},
+      showPrice: false
     };
   },
   mounted: function mounted() {
     this.date = new Date(this.timestamp * 1000);
-    var request = new XMLHttpRequest();
-    var path = "data/price/" + this.symbol + "-" + this.exchange + ".json";
-    request.open("GET", path, true);
-    var that = this;
-    request.send();
+  },
+  methods: {
+    toggle: function toggle() {
+      this.showPrice = !this.showPrice;
 
-    request.onload = function () {
-      if (request.status === 200) {
-        that.priceAction = JSON.parse(request.response).price_data;
-        console.log(that.priceAction);
+      if (this.showPrice) {
+        this.fetchPrice();
       }
-    };
+    },
+    fetchPrice: function fetchPrice() {
+      var request = new XMLHttpRequest();
+      var path = "data/price/" + this.symbol + "-" + this.exchange + ".json";
+      request.open("GET", path, true);
+      var that = this;
+      request.send();
+
+      request.onload = function () {
+        if (request.status === 200) {
+          that.priceAction = JSON.parse(request.response).price_data;
+        }
+      };
+    }
   }
 });
 
@@ -37575,6 +37607,32 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "ctr" }, [
+    _c("div", { staticClass: "toggle-button" }, [
+      _vm.showPrice
+        ? _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.toggle()
+                }
+              }
+            },
+            [_vm._v("Hide Price")]
+          )
+        : _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.toggle()
+                }
+              }
+            },
+            [_vm._v("Show Price")]
+          )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "what" }, [
       _vm._v(_vm._s(_vm.symbol) + " added to " + _vm._s(_vm.exchange))
     ]),
@@ -37585,7 +37643,21 @@ var render = function() {
     _vm._v(" "),
     _c("p", [_vm._v("also on: " + _vm._s(_vm.also))]),
     _vm._v(" "),
-    _c("div", { staticClass: "price-action" })
+    _vm.showPrice
+      ? _c(
+          "div",
+          { staticClass: "price-action" },
+          [
+            _vm._v("\n        PRICE!!!!\n          "),
+            _vm._l(_vm.priceAction, function(price) {
+              return _c("li", { key: price }, [
+                _vm._v("\n            " + _vm._s(price) + "\n          ")
+              ])
+            })
+          ],
+          2
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
