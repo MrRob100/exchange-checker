@@ -49,7 +49,6 @@
     },
 
     mounted() {
-
       this.date = new Date(this.timestamp * 1000);
 
     },

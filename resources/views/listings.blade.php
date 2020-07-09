@@ -12,19 +12,14 @@
     </head>
     <body>
         <div id="app">
-            <button class="toggle-all-prices">Price Action</button>
+            <button id="all-prices" class="toggle-all-prices">Price Action</button>
 
             <div class="content">
                 <h4>Listings</h4>
 
-                @foreach ($events as $event)
-                    <listing
-                    symbol="{{ $event['symbol'] }}"
-                    exchange="{{ $event['exchange'] }}"
-                    timestamp="{{ $event['timestamp'] }}"
-                    also="{{ implode(' ',$event['alsoOn']) }}"
-                    ></listing>
-                @endforeach
+                <listings
+                events="{{ $e_string }}"
+                ></listings>
 
             </div>
         </div>

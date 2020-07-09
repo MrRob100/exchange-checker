@@ -14,7 +14,11 @@ class listingsController extends Controller
 
         $events = json_decode(file_get_contents('../public/data/listings.json'), true);
 
-        return view('listings', compact('events'));
+        $e_string = json_encode($events); 
+
+        // dd($e_string);
+
+        return view('listings', compact('e_string'));
     }
 
     public function kraken() {
