@@ -37641,7 +37641,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "avail" }),
     _vm._v(" "),
-    _c("p", [_vm._v("also on: " + _vm._s(_vm.also))]),
+    _c("div", [_vm._v("also on: " + _vm._s(_vm.also))]),
     _vm._v(" "),
     _vm.showPrice
       ? _c(

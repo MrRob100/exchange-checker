@@ -6,18 +6,21 @@
         "alsoOn": ["exchange X"]
     },
     "2": {
-      "exchange": "Exchange B",
-      "symbol": "DEF",
-      "timestamp": "6789796526",
-      "alsoOn": [
-        "exchange X",
-        "exchange Y"
-      ]
+        "exchange": "Exchange B",
+        "symbol": "DEF",
+        "timestamp": "6789796526",
+        "alsoOn": ["exchange X", "exchange Y"]
     },
     "3": {
-      "exchange": "Exchange C",
-      "symbol": "FFF",
-      "timestamp": "7789796526",
-      "alsoOn": []
+        "exchange": "Exchange C",
+        "symbol": "FFF",
+        "timestamp": "7789796526",
+        "alsoOn": []
+    },
+    "Bilaxy-EOS": {
+        "exchange": "Bilaxy",
+        "symbol": "EOS",
+        "timestamp": 1591447673,
+        "alsoOn": []
     }
 }
