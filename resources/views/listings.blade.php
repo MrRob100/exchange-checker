@@ -12,7 +12,6 @@
     </head>
     <body>
         <div id="app">
-            <button id="all-prices" class="toggle-all-prices">Price Action</button>
 
             <div class="content">
                 <h4>Listings</h4>

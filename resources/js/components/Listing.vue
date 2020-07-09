@@ -38,7 +38,7 @@
 <script>
     export default {
 
-      props: ['symbol', 'exchange', 'timestamp', 'also'],
+      props: ['show', 'symbol', 'exchange', 'timestamp', 'also'],
 
       data: function() {
         return {
@@ -50,7 +50,17 @@
 
     mounted() {
       this.date = new Date(this.timestamp * 1000);
+      this.showPrice = this.show;
 
+    },
+
+    watch: {
+      show: function(newVal, oldVal) {
+        this.showPrice = newVal;
+        if (newVal) {
+          this.fetchPrice();
+        }
+      }
     },
 
     methods: {

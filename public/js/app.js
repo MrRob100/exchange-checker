@@ -1979,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['symbol', 'exchange', 'timestamp', 'also'],
+  props: ['show', 'symbol', 'exchange', 'timestamp', 'also'],
   data: function data() {
     return {
       date: "",
@@ -1989,6 +1989,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.date = new Date(this.timestamp * 1000);
+    this.showPrice = this.show;
+  },
+  watch: {
+    show: function show(newVal, oldVal) {
+      this.showPrice = newVal;
+
+      if (newVal) {
+        this.fetchPrice();
+      }
+    }
   },
   methods: {
     toggle: function toggle() {
@@ -2041,16 +2051,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['events'],
   data: function data() {
     return {
-      events_formatted: {}
+      events_formatted: {},
+      show: false
     };
   },
   mounted: function mounted() {
     var events_formatted = JSON.parse(this.events);
     this.events_formatted = events_formatted;
+  },
+  methods: {
+    toggle: function toggle() {
+      this.show = !this.show;
+    }
   }
 });
 
@@ -37724,24 +37754,55 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.events_formatted, function(event) {
-      return _c(
-        "div",
-        { key: event.symbol, staticClass: "outer" },
-        [
-          _c("listing", {
-            attrs: {
-              symbol: event.symbol,
-              exchange: event.exchange,
-              timestamp: event.timestamp,
-              also: event.alsoOn
-            }
-          })
-        ],
-        1
-      )
-    }),
-    0
+    [
+      _c("div", { staticClass: "toggle-button" }, [
+        _vm.show
+          ? _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.toggle()
+                  }
+                }
+              },
+              [_vm._v("Hide All Prices")]
+            )
+          : _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.toggle()
+                  }
+                }
+              },
+              [_vm._v("Show All Prices")]
+            )
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm._l(_vm.events_formatted, function(event) {
+        return _c(
+          "div",
+          { key: event.symbol, staticClass: "outer" },
+          [
+            _c("listing", {
+              attrs: {
+                show: _vm.show,
+                symbol: event.symbol,
+                exchange: event.exchange,
+                timestamp: event.timestamp,
+                also: event.alsoOn
+              }
+            })
+          ],
+          1
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
