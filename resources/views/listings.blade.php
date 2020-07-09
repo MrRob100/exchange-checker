@@ -83,6 +83,7 @@
         }
 
         .ctr {
+            padding: 5px;
             border-width: 1px;
             border-color: #777;
             border-style: solid;
